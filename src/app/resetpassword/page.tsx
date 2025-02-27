@@ -1,14 +1,12 @@
 "use client";
 
 import axios from "axios";
-import { set } from "mongoose";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-export default function verifyForgotPasswordPage() {
+export default function VerifyForgotPasswordPage() {
   const router = useRouter();
   const [user, setUser] = useState({
     password: "",
@@ -48,7 +46,7 @@ export default function verifyForgotPasswordPage() {
   useEffect(() => {
     const urlToken = window.location.search.split("=")[1];
     setToken(urlToken || "");
-  }, []);
+  }, [resetpassword]);
 
   useEffect(() => {
     if (token.length > 0) {
@@ -87,8 +85,14 @@ export default function verifyForgotPasswordPage() {
           >
             {loading ? "Updating..." : "Reset Password"}
           </button>
+          {error && (
+            <p className="text-red-500">
+              Something went wrong please try again
+            </p>
+          )}
         </div>
       )}
+      {!verified && <div></div>}
       <Toaster />
     </div>
   );

@@ -1,13 +1,10 @@
 "use client";
-import Link from "next/link";
-import React, { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import React from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
 
 export default function ForgotPasswordPage() {
-  const router = useRouter();
   const [user, setUser] = React.useState({
     email: "",
   });
