@@ -46,7 +46,7 @@ export default function VerifyForgotPasswordPage() {
   useEffect(() => {
     const urlToken = window.location.search.split("=")[1];
     setToken(urlToken || "");
-  }, [resetpassword]);
+  }, []);
 
   useEffect(() => {
     if (token.length > 0) {
