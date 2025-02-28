@@ -1,0 +1,43 @@
+=>in cmd create npx create-next-app@latest,provide the cofig,then npm i axios bcryptjs jsonwebtoken nodemailer react-hot-toast and mongoose,in src create models and helpers folder,create env file,create folder in app login and page file,then same for signup,then for backend create api folder in in src and create login and signup folder with route.ts file,then create env variables like mongodburl,domain,token-secret,then create dbconfig folder and connect to database.
+
+=>in frontend signup make tha page use client,then import link,react,userouter,axios.create state for user which takes object of email,password,username for signup,create signup method for sending data to backend on click,then create input fields for username,email,password and create button for submit as well
+
+=>same way create login for frontend with email and password,create profile page,inside profile create id folder and accept params in it for grabing the urls on the page visit.
+
+*LOGIN AND SIGNUP*
+
+=>create usermodel in models import mongoose create schema export it in schema set the fields you want to store in db and also email and forgot pass tokens as well.
+
+=>in signup backend import connect,Usermodel,nextreq,nextres,bcrypt as well and connect to database.create a post method take req parameter handle try catch then get data from request.json and extract the coming info,check user for empty fields,then find user if its their,if not then hashpassword,then save user in db,return response.
+
+=>in signup frontend get userouter,create button state if you want to make some fun with user signup button , same way you can use loading state,use toast for success error messages,then on signup method use try catch and send axios req to backend for registering the user.
+
+=>in login backend use same as signup backend extract email and password from body,find user and compare it,all good then create token with id username and email with it with jwt,then set the cookies with help of next response, and return the response.
+
+=>in login frontend handle the thing same as you did in signup frontend
+
+*MIDDLEWARES*
+
+=>create logout backend import next response create get method send the response and set the cookies to empty.
+
+=in profile frontend create a logout button and create a logout method for button on click and logout the user using axios to make req to logout backend.
+
+=>in src create file middleware.ts provide matcher the paths you want to watch and grabs path using request.nexturl.pathname and grab token from cookies,if pathispublic and user has token send him to profile page and if it is not a public path and user does not have a token send him to login.
+
+=> in api create myself folder , in helpers create getdatafrom token file,in getdatafrom token create method and get cookies from request and decode it with jwt verify and return it.
+
+=>in myself route import getdatafrom token helper create get method call the helper and find user based on its id which will come from helper in return.
+
+=>in profile page create a button which calls a method which calls an api to get the user,store it in a state.
+
+*EMAIL VERIFICATION*
+
+=>create mailer.ts file in helpers import nodemailer user and bcrypt create method for sending the email with params of email,emailtype and userid , hash userid using bcrypt and update the database verify email and forgotpassword based on email type,then add createtransport from mailtrap with its host and port and auth ,then create mailoptions to define from whom the email will come from and whom to it will go and whats gone be the subject as well,then send email.
+
+=>create verify email route connect database extract token from body finduser based on it and update isverify field and flush out the verify email token and time from database,after signup send the verify email to user.
+
+=>create verify email for frontend set states for token,verify and error make axios req to verifyemail backend by sending the token,use useeffect to check the length of the token and to call verifyuseremail method with token dependency,use another useeffect with no dependency to extract token from url and settoken,return based on verify and error.
+
+
+
+
